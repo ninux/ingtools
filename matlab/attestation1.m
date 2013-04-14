@@ -1,7 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Subject:	Ingeneer Tools
-% File:	Attestation 1 - SW07 ("sw07.m")
+% Subject:	Engineer Tools
+% File:		Attestation 1 - SW07 ("sw07.m")
 % Author:	Ervin Mazlagic
+% Date:		April 14, 2013
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Preparations
@@ -25,12 +26,11 @@ u4 = [1:100].*(-1).^[0:99];
 u4
 
 %%%%% Exercise 1.1 e)
-% this is a difficult one because we have to define a fibonacci-function
-fib = [1,1];	% define the start-values
-while fib(end) < 6765;	% define the conditions
-	fib = [ fib, (fib(end) + fib(end-1))];
-end
-fib;
+fib = [1,1];	% define the start-values for the fibonacci-function
+while fib(end) < 6765;	% define the conditions for calculation
+	fib = [ fib, (fib(end) + fib(end-1))];	% define the rule
+end	% close the function
+fib	% show the result
 
 %%%%% Exercise 1.2 a)
 u6 = sum(1:100);
