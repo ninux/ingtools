@@ -1,0 +1,220 @@
+% coding:utf-8
+
+\section{Maple}
+
+\subsection{Dezimalbereich}
+Um in Maple den Dezimalbereich zu definieren benutzt man eine Zuweisung
+an eine interne Variabel namens \verb!Digits!. Dieser kann ein Integer-Wert
+zugewiesen werden. Der Default-Wert ist 10. Für beispielsweise ein 
+Dezimalstellenbereich von 5 zu haben gibt man folgendes ein.
+
+\begin{lstlisting}[caption=Dezimalstellen, label=Dezimalstellen]
+Digits:=5
+\end{lstlisting}
+
+\subsection{Numerische Werte}
+Um in Maple einen Wert numerisch anzuzeigen kann die Funktion \verb!evalf()!
+verwendet werden.
+
+\begin{lstlisting}[caption=Numerisch, label=Numerisch]
+evalf()
+\end{lstlisting}
+
+\subsection{Intervalle}
+Intervalle werden im Maple in der folgenden Form angegeben: Bsp. $[a,b]$
+
+\begin{lstlisting}[caption=Intervalle, label=Intervalle]
+a..b
+\end{lstlisting}
+
+\subsection{Buffer verwenden}
+Rechnet man in Maple etwas aus, so ist die jeweils letzte Ausgabe von
+Maple in einem Buffer abgelegt. Das im Buffer abgelegte Ergebnis kann 
+verwendet werden mit der dafür reservierten Variable \verb!%!. Möchte man
+das zuvor gerechnete Ergebnis mal 2 rechnen so gibt man folgendes ein.
+
+\begin{lstlisting}[caption=Buffer lesen, label=Buffer lesen]
+2*%
+\end{lstlisting}
+
+\subsection{Vereinfachen}
+Um einen Term im Maple zu vereinfachen kann die Funktion \verb!simplify()!
+genutzt werden.
+
+\begin{lstlisting}[caption=Vereinfachen, label=Vereinfachen]
+simplify()
+\end{lstlisting}
+
+\subsection{Faktorisieren}
+Um einen Term zu Faktorisieren kann \verb!factor()! genutzt werden.
+
+\begin{lstlisting}[caption=Faktorisieren, label=Faktorisieren]
+factor()
+\end{lstlisting}
+
+\subsection{Ausmultiplizieren}
+Um einen Term in ausmultiplizierter Form zu erhalten kann \verb!expand()!
+genutzt werden.
+
+\begin{lstlisting}[caption=Ausmultiplizieren, label=Ausmultiplizieren]
+expand()
+\end{lstlisting}
+
+\subsection{Kreiszahl}
+Um in Maple die Kreiszahl $\pi$ zu benutzen muss speziell auf die Syntax
+geachtet werden da hier leicht Fehler entstehen die nicht sofort bemerkt 
+werden. Will man mit der Kreiszahl $\pi$ rechnen so muss \verb!Pi! 
+mit grossem \verb!P! eingegeben werden. Schreibt man es klein \verb!pi!
+so meint Maple, man wollte den griechischen Buchstaben und nicht die 
+Kreiszahl benutzen.
+
+\begin{lstlisting}[caption=Pi, label=Pi]
+Pi
+\end{lstlisting}
+
+\subsection{Euler'sche Zahl}
+In Maple muss die Eulersche Zahl als \verb!exp()! und nicht etwa als 
+\verb!e! geschrieben werden. Der Term $2 \cdot x + 5 \cdot e^{2 \cdot x}$
+wird wie folgt eingegeben.
+
+\begin{lstlisting}[caption=Euler, label=Euler]
+2*x+5*exp(2*x)
+\end{lstlisting}
+
+
+\subsection{Annahmen}
+Mit \verb!assume()! können Annahmen zugewiesen werden wie $n = 10$, 
+$n \in \mathbb{Z}$ usw. Hier einige Beispiele in Maple-Syntax.
+
+\begin{lstlisting}[caption=Annahmen, label=Annahmen]
+assume(n,'integer')
+assume(n,'natural')
+assume(n=10)
+assume(n>10)
+\end{lstlisting}
+
+\noindent
+\textbf{Achtung}: Es sollte wo immer möglich eine fixe Definition statt
+eines \verb!assume()! verwendet werden da diese nicht zwingend zu Gleichen 
+Ergebnissen führen. D.h. wenn man $n=10$ haben möchte, sollte man 
+\verb!n:=10! und nicht \verb!assume(n=10)! verwenden.
+
+\subsection{Funktionen}
+In Maple müssen Funktionen immer wie folgt eingegeben werden
+\begin{enumerate}
+	\item Funktionsname (f)
+	\item Zuweisung (:=)
+	\item unabhängige Variable (x)
+	\item Funktionszuweisung (->)
+\end{enumerate}
+
+$f(x)=2 \cdot x + 3$
+
+\begin{lstlisting}[caption=Funktionen, label=Funktionen]
+f:=x->2*x+3
+\end{lstlisting}
+
+\subsubsection{Stückweise Definitionen}
+Man kann im Maple Funktionen auch Stükweise definieren mit \verb!pieceweise!.
+Die Symtax hat dabei die folgende Form.
+
+\begin{lstlisting}[caption=Stückweise Definition, label=Stückweise Definition]
+f:=x->pieceweise(x<0, 2*x, x=0, 0, x>0, -2*x)
+\end{lstlisting}
+
+\noindent
+Das obige Beispiel entspricht dabei der folgenden Funktion:
+
+\begin{displaymath}
+	f(x) = \left\{
+		\begin{array}{lr}
+			2 \cdot x &  x < 0 \\
+			0 & x = 0 \\
+			-2 \cdot x & x > 0
+		\end{array}
+        \right.
+\end{displaymath}
+
+
+\subsubsection{Summen}
+Die Funktion $s(t)=\sum\limits_{k=1}^n k \cdot cos(k \cdot t) $ wird wie folgt
+eingegeben.
+\begin{lstlisting}[caption=Summen, label=Summen]
+s:=t->sum(k*cos(k*t),k=1..n)
+\end{lstlisting}
+
+\subsection{Gleichungen lösen}
+
+\subsubsection{Symbolisch}
+Möchte man eine Gleichung symbolisch lösen so verwendet man die Funktion
+\verb!solve()!.
+
+\begin{lstlisting}[caption=Gleichung symbolisch, label=Gleichungen symbolisch I]
+solve(2*x+5=0,x)
+\end{lstlisting}
+
+\noindent
+Mit dieser lassen sich auch Gleichungssyteme lösen. Hierzu werden die 
+Gleichungen in eckige Klammern gesetzt und per Komma getrennt. Genau gleich
+die gesuchten Parameter. Eine typische Aufgabe ist die folgende.
+
+\begin{lstlisting}[caption=Gleichungssystem, label=Gleichungssystem]
+f1:=x->a*x^3+b*x^2+c*x+d
+f2:=D^(1)(f1)
+f3:=D^(2)(f1)
+f4:=D^(3)(f1)
+solve([f2(0)=0, f3(2)=0, f4(-2)=0], [a,b,c,d])
+\end{lstlisting}
+
+\subsubsection{Numerisch}
+Analog zum symbolischen lösen von Gleichungen und Gleichungssystemen wird
+für die numerischen die Funktion \verb!fsolve()! verwendet.
+
+\begin{lstlisting}[caption=Gleichung numerisch, label=Gleichung numerisch]
+fsolve()
+\end{lstlisting}
+
+\subsection{Parameter zuweisen}
+Hat man zum Beispiel ein Gleichungssystem gelöst, erhält man symbolische oder
+numerische Werte für diese. Möchte man diese gleich Zuweisen, kann die Funktion
+\verb!assign()! verwendet werden.
+
+\begin{lstlisting}[caption=Parameter zuweisen, label=Parameter zuweisen]
+solve( ... , [a,b,c,d])
+assign(%)
+\end{lstlisting}
+
+\subsection{Plotten}
+In Maple gibt es 3 Typen von Plots:
+\begin{itemize}
+	\item \verb!plot()! \hfill gewöhnlicher Plot
+	\item \verb!implicitplot()! \hfill impliziter Plot
+	\item \verb!plot3d()! \hfill dreidimensionaler Plot
+\end{itemize}
+
+\subsubsection{Gewöhnlicher Plot}
+Beim gewöhnlichen Plot kann eine Menge von Parametern definiert werden.
+Im folgenden ist ein Minimal und Maximalbeispiel zu sehen.
+
+\begin{lstlisting}[caption=Plot, label=Plot]
+f1:=x->10+5*sin((2*Pi)/3+((5*Pi)/2))
+f2:=x-> ... 
+f3:=x-> ...
+
+plot(f1, x)
+
+plot([f1(x),f2(x),f3(x)], 
+     x=-10..10,
+     color=[red, blue, green],
+     thickness=[3, 5, 7],
+     legend=["Legend 1", "Legend 2", "Legend 3"],
+     title="Sinusfunktion",
+     xtickmarks=10,
+     ytickmarks=[2.5='A', 4.5='B'],
+     grid=[a,b],
+     axes=boxed,
+     ...
+     )
+
+
+\end{lstlisting}
