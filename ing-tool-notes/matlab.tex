@@ -28,3 +28,15 @@ while i<n
 end
 \end{lstlisting}
 
+\subsubsection{Stückweise Definition}
+\begin{lstlisting}[caption=Stückweise Definition, label=piecewise]
+x=-2:0.01:2;
+
+for k=1:length(x)
+    if x(k)<=0
+        f(k)=1;
+    else
+        f(k)=exp(x(k));
+    end
+end
+\end{lstlisting}
