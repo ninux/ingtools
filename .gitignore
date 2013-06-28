@@ -1,2 +1,9 @@
+*.swp
+*.aux
+*.log
+*.lol
+*.out
+*.toc
+
 *.pdf
 *.m~~
